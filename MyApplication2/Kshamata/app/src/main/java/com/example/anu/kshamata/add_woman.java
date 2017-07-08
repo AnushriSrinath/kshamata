@@ -37,16 +37,20 @@ public class add_woman extends AppCompatActivity {
         dbAdapter db = new dbAdapter(this);
         //---add a contact---
         db.open();
-        EditText txt1, txt2;
-        String str1, str2;
+        EditText txt1, txt2, txt3,txt4;
+        String str1, str2, str3,str4;
 
-        txt1 = (EditText)findViewById(R.id.editText);
-        txt2 = (EditText)findViewById(R.id.editText2);
+        txt1 = (EditText)findViewById(R.id.editText4);
+        txt2 = (EditText)findViewById(R.id.editText);
+        txt3 = (EditText)findViewById(R.id.editText2);
+        txt4 = (EditText)findViewById(R.id.editText5);
 
         str1 = txt1.getText().toString();
         str2 = txt2.getText().toString();
+        str3 = txt3.getText().toString();
+        str4 = txt4.getText().toString();
 
-        long id = db.insertContact(str1, str2);
+        long id = db.insertContact(str1, str2, str3,str4);
         if(id != 0)
             Toast.makeText(getApplicationContext(),"Data Inserted Successfully ",Toast.LENGTH_LONG).show();
         else
@@ -54,6 +58,8 @@ public class add_woman extends AppCompatActivity {
         db.close();
         txt1.setText("");
         txt2.setText("");
+        txt3.setText("");
+        txt4.setText("");
         txt2.clearFocus();
     }
 
