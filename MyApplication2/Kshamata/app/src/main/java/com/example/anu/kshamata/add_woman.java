@@ -15,7 +15,11 @@ import android.widget.Toast;
 public class add_woman extends AppCompatActivity {
     dbAdapter db;
     String pname;
+
     @Override
+
+
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_woman2);
