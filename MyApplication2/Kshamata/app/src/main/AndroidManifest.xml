@@ -38,10 +38,6 @@
             android:name=".volunteer"
             android:label="@string/title_activity_admin"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".assigned_women"
-            android:label="@string/title_activity_assigned_women"
-            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".profile" />
         <activity android:name=".update_info" />
         <activity android:name=".story" />
@@ -72,6 +68,7 @@
         <activity
             android:name=".admin_activity"
             android:label="@string/title_activity_admin_activity"
+<<<<<<< HEAD
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -84,6 +81,15 @@
         <activity android:name=".analyze" />
         <activity android:name=".select_image_activity" />
 
+=======
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".Map_Of_Women" />
+        <activity android:name=".login" />
+        <activity android:name=".assigned_women" />
+        <activity android:name=".Skills" />
+        <activity android:name=".Independent" />
+        <activity android:name=".Placement"></activity>
+>>>>>>> 81beaa1446c15b82c85781be92e03461e06e365b
     </application>
 
 </manifest>
