@@ -1,42 +1,31 @@
 package com.example.anu.kshamata;
 
-import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ListAdapter;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.ArrayList;
-
 public class display_details extends AppCompatActivity {
 View view;
-    dbAdapter DB;
 
-    TextView name,dob, age, phone;
+    TextView name,dob, age, phone,history;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display_details);
-
-        DB = new dbAdapter(this,null,null,1);
-
-
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         name = (TextView)findViewById(R.id.name);
         dob = (TextView)findViewById(R.id.dob);
         age = (TextView)findViewById(R.id.age);
         phone = (TextView)findViewById(R.id.phone);
+        history = (TextView)findViewById(R.id.historytext);
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -46,60 +35,32 @@ View view;
             }
         });
 
-        ListView listview = (ListView)findViewById(R.id.listView);
-        DB = new dbAdapter(this,null,null,1);
+        displayContact(view);
+    }
 
-        ArrayList<String> theList = new ArrayList<>();
-        Cursor data = DB.getListContents();
-
-        if(data.getCount() == 0)
-        {
-            Toast.makeText(this,"DB doesn't exist",Toast.LENGTH_LONG).show();
+    public void displayContact(View view) {
+        dbAdapter db = new dbAdapter(this);
+        db.open();
+        Cursor c = db.getAllContacts();
+        if (c.moveToFirst()) {
+            do {
+                display(c);
+            } while (c.moveToNext());
         }
+        db.close();
+    }
 
-        else
-        {
-            while(data.moveToNext())
-            {
-                theList.add(data.getString(1));
-                ListAdapter listadapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,theList);
-                listview.setAdapter(listadapter);
+    public void display(Cursor c)
+    {
 
-
-
-                        //String s = (String) adapterView.getItemAtPosition(i);
-//                        Toast.makeText(view.getContext(),"Fetching data..",Toast.LENGTH_SHORT).show();
-
-
-                        ListView listviw = (ListView)findViewById(R.id.listView);
-
-                        ArrayList<String> thList = new ArrayList<>();
-                        Cursor dat = DB.getListContents();
-
-
-
-                            while(dat.moveToNext())
-                            {
-                                thList.add(dat.getString(1));
-                                ListAdapter listadaptr = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,theList);
-                                listviw.setAdapter(listadaptr);
-
-
-
-
-                            }
-
-
-                        //}
-
-
-
-
-
-            }
-        }
-
-
-
+        name.setText(c.getString(1));
+        dob.setText(c.getString(2));
+        String s = c.getString(0) + c.getString(1) + c.getString(2);
+        Toast.makeText(this,s,Toast.LENGTH_SHORT).show();
+        Toast.makeText(this,
+                "id: " + c.getString(0) + "\n" +
+                        "Name: " + c.getString(1) + "\n" +
+                        "dob: " + c.getString(2),
+                Toast.LENGTH_LONG).show();
     }
 }

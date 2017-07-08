@@ -19,7 +19,7 @@ public class add_woman extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_woman2);
-        db = new dbAdapter(this, null, null, 1);
+        db = new dbAdapter(this);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -83,22 +83,25 @@ public class add_woman extends AppCompatActivity {
 
     public void insertContact(View view)
     {
-        dbAdapter db = new dbAdapter(this,null,null,1);
+        dbAdapter db = new dbAdapter(this);
         //---add a contact---
         db.open();
 
-        EditText txt1, txt2, txt3, txt4;
-        String str1, str2, str3, str4;
+        EditText txt1, txt2, txt3, txt4, txt5;
+        String str1, str2, str3, str4, str5;
 
         txt1 = (EditText) findViewById(R.id.editText4);
         txt2 = (EditText) findViewById(R.id.editText);
         txt3 = (EditText) findViewById(R.id.editText2);
         txt4 = (EditText) findViewById(R.id.editText5);
+        txt5 = (EditText) findViewById(R.id.ehistory);
+
 
         str1 = txt1.getText().toString();
         str2 = txt2.getText().toString();
         str3 = txt3.getText().toString();
         str4 = txt4.getText().toString();
+        str5 = txt5.getText().toString();
 
         long id = db.insertContact(str1, str2, str3, str4);
         if(id != 0)
@@ -110,7 +113,8 @@ public class add_woman extends AppCompatActivity {
         txt2.setText("");
         txt3.setText("");
         txt4.setText("");
-        txt4.clearFocus();
+        txt5.setText("");
+        txt5.clearFocus();
     }
 
 
