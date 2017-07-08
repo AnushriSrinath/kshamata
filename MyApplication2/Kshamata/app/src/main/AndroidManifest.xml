@@ -27,14 +27,14 @@
             android:name=".assigned_women"
             android:label="@string/title_activity_assigned_women"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".add_woman"
-            android:label="@string/title_activity_add_woman"
-            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".profile" />
         <activity android:name=".update_info" />
         <activity android:name=".history" />
-        <activity android:name=".track_woman"></activity>
+        <activity android:name=".track_woman" />
+        <activity
+            android:name=".add_woman"
+            android:label="@string/title_activity_add_woman"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
