@@ -4,7 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 public class update_info extends AppCompatActivity {
-    dbAdapter db = new dbAdapter(this);
+    //dbAdapter db = new dbAdapter(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

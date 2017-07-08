@@ -3,6 +3,7 @@ package com.example.anu.kshamata;
 /**
  * Created by anu on 08-07-2017.
  */
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -10,111 +11,170 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
-public class dbAdapter {
+
+
+/**
+ * Created by anu on 01-12-2016.
+ */
+public class dbAdapter extends SQLiteOpenHelper {
+
+    public static final int database_version = 1;
+    static final String TAG = "dbAdapter";
+    static final String DATABASE_NAME = "MyDB";
+    static final String DATABASE_TABLE = "contacts";
+    static final int DATABASE_VERSION = 1;
     static final String KEY_ROWID = "_id";
     static final String KEY_NAME = "name";
     static final String KEY_DOB = "dob";
     static final String KEY_AGE = "age";
     static final String KEY_PHONE = "phone";
+    public static String [] DBString;
+    public static int i = 0;
 
 
-    static final String TAG = "dbAdapter";
-    static final String DATABASE_NAME = "MyDB";
-    static final String DATABASE_TABLE = "contacts";
-    static final int DATABASE_VERSION = 1;
-    static final String DATABASE_CREATE =
-            "create table contacts (_id integer primary key autoincrement, "
-                    + "name text not null, dob text not null, age text not null, phone text not null );";
-
-    final Context context;
-    DatabaseHelper DBHelper;
-    SQLiteDatabase db;
-    public dbAdapter(Context ctx)
-    {
-        this.context = ctx;
-        DBHelper = new DatabaseHelper(context);
+    public dbAdapter(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
+        super(context, DATABASE_NAME, factory, database_version);
     }
-    private static class DatabaseHelper extends SQLiteOpenHelper
-    {
-        DatabaseHelper(Context context)
-        {
-            super(context, DATABASE_NAME, null, DATABASE_VERSION);
-        }
-        @Override
-        public void onCreate(SQLiteDatabase db)
-        {
-            try {
-                Log.d("==============",DATABASE_CREATE);
-                db.execSQL(DATABASE_CREATE);
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-        @Override
-        public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion)
-        {
-            Log.w(TAG, "Upgrading database from version " + oldVersion + " to "
-                    + newVersion + ", which will destroy all old data");
-            db.execSQL("DROP TABLE IF EXISTS contacts");
-            onCreate(db);
-        }
+
+    @Override
+    public void onCreate(SQLiteDatabase sdb) {
+
+        String query = "CREATE TABLE " + DATABASE_TABLE + " ("+
+                KEY_ROWID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+                KEY_NAME + " TEXT," +
+                KEY_DOB + "TEXT," +
+                KEY_PHONE + " TEXT" +
+
+                " )";
+
+        sdb.execSQL(query);
+        Log.d("Database Operations", "Table created");
+
+        //Log.d("Creating database ", "MyDBHandler.onCreate");
     }
-    //---opens the database---
-    public dbAdapter open() throws SQLException
+
+
+
+    @Override
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        db.execSQL("DROP TABLE IF EXISTS " + DATABASE_TABLE);
+        onCreate(db);
+    }
+
+    //database putInformatin
+
+//    public void putInformation(String name){
+//        SQLiteDatabase SQ = getReadableDatabase();
+//        ContentValues cv = new ContentValues();
+//        cv.put(COLUMN_NAME2, name);
+//        //long k = SQ.insert(SearchInfo.TABLE_NAME, null, cv);
+//
+//        SQ.insert(TABLE_NAME,null,cv);
+//        SQ.close();
+//
+//        Log.d("Database Operations", "One row inserted");
+//        //Log.d("BloodBank","Info Inserted",name);
+//        //Log.d("THE DATABASE", pname);
+//    }
+
+    public boolean addDataToTable(String pname)//,String pdob,String padr,String pph,String pemail,String pbg,String pwt,String phi)
     {
-        db = DBHelper.getWritableDatabase();
-        return this;
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+
+        contentValues.put(KEY_NAME,pname);
+//        contentValues.put(COLUMN_DOB,pdob);
+//        contentValues.put(COLUMN_ADDRESS,padr);
+//        contentValues.put(COLUMN_PHONE,pph);
+//        contentValues.put(COLUMN_EMAIL,pemail);
+//        contentValues.put(COLUMN_BG,pbg);
+//        contentValues.put(COLUMN_WEIGHT,pwt);
+//        contentValues.put(COLUMN_HEALTHISSUES,phi);
+
+
+        // db.insert(TABLE_NAME, null, contentValues);
+
+
+
+
+        long result = db.insert(DATABASE_TABLE,"",contentValues);
+        //db.close();
+
+
+        if(result == -1)
+        {
+            return false;
+
+        }
+
+        else
+        {
+
+            return true;
+        }
+
+
+
+
+    }
+    public boolean open() throws SQLException
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        db = this.getWritableDatabase();
+
+        return true;
     }
     //---closes the database---
     public void close()
     {
-        DBHelper.close();
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        db.close();
     }
-    //---insert a contact into the database---
+
+
+
     public long insertContact(String name, String dob, String age, String phone)
     {
+        SQLiteDatabase db = this.getWritableDatabase();
+
         ContentValues initialValues = new ContentValues();
         initialValues.put(KEY_NAME, name);
         initialValues.put(KEY_DOB, dob);
         initialValues.put(KEY_AGE, age);
         initialValues.put(KEY_PHONE, phone);
-
-        return db.insert(DATABASE_TABLE, null, initialValues);
-    }
-    //---deletes a particular contact---
-    public boolean deleteContact(long rowId)
-    {
-        return db.delete(DATABASE_TABLE, KEY_ROWID + "=" + rowId, null) > 0;
-    }
-    //---retrieves all the contacts---
-    public Cursor getAllContacts()
-    {
-        return db.query(DATABASE_TABLE, new String[] {KEY_ROWID, KEY_NAME, KEY_DOB, KEY_AGE,
-                KEY_PHONE}, null, null, null, null, null);
+        return db.insert(DATABASE_TABLE,"",initialValues);
     }
 
 
-    //---retrieves a particular contact---
-    public Cursor getContact(long rowId) throws SQLException
-    {
-        Cursor mCursor = db.query(true, DATABASE_TABLE, new String[] {KEY_ROWID,
-                KEY_NAME, KEY_DOB,KEY_AGE, KEY_PHONE}, KEY_ROWID + "=" + rowId, null,null, null, null, null);
-        if (mCursor != null)
-        {
-            mCursor.moveToFirst();
-        }
-        return mCursor;
+    public Cursor getListContents() {
+
+
+        SQLiteDatabase SQ = this.getWritableDatabase();
+
+        String query = "SELECT * FROM " + DATABASE_TABLE + " WHERE 1";
+
+        //String query2 = "SELECT * FROM " + TABLE_NAME + "WHERE " + COLUMN_BG + " = 'B+'";
+
+
+
+        //Using cursors
+
+        Cursor CR = SQ.rawQuery(query, null);
+        return CR;
+
     }
 
-    //---updates a contact---
-    public boolean updateContact(long rowId, String name, String dob, String age ,String phone)
-    {
-        ContentValues args = new ContentValues();
-        args.put(KEY_NAME, name);
-        args.put(KEY_DOB, dob);
-        args.put(KEY_AGE, age);
-        args.put(KEY_PHONE, phone);
-        return db.update(DATABASE_TABLE, args, KEY_ROWID + "=" + rowId, null) > 0;
+
+
+    public void deleteHistory2(){
+        String query = "DROP TABLE IF EXISTS " + DATABASE_TABLE;
+        SQLiteDatabase SQ = getWritableDatabase();
+        SQ.execSQL(query);
+        onCreate(SQ);
     }
+
+
+
 }
-
