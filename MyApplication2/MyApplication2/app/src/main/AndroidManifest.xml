@@ -15,9 +15,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Location_activity"></activity>
+        <activity android:name=".Location_activity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <meta-data android:name="com.google.android.maps.v2.API_KEY" android:value="AIzaSyCMnX_UOJhI3Ea0q8O1Lyz_C2ux4NAUk_M"/>
+        <meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version" />
     </application>
 
-    
+
 
 </manifest>
