@@ -1,5 +1,6 @@
 package com.example.anu.kshamata;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -24,5 +25,13 @@ public class assigned_women extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+    }
+
+
+    public void gotoprofile(View v)
+    {
+        Intent intent;
+        intent = new Intent(this, profile.class);
+        startActivity(intent);
     }
 }
