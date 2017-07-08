@@ -1,6 +1,5 @@
 package com.example.anu.kshamata;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -13,7 +12,7 @@ public class add_woman extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_woman);
+        setContentView(R.layout.activity_add_woman2);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -25,11 +24,5 @@ public class add_woman extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
-    }
-
-    public void next(View v) {
-        Intent intent;
-        intent = new Intent(this, assigned_women.class);
-        startActivity(intent);
     }
 }
