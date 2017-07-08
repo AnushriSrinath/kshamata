@@ -39,6 +39,10 @@
             android:name=".display_details"
             android:label="@string/title_activity_display_details"
             android:theme="@style/AppTheme.NoActionBar"></activity>
+
+
+        <meta-data android:name="com.google.android.maps.v2.API_KEY" android:value="AIzaSyCMnX_UOJhI3Ea0q8O1Lyz_C2ux4NAUk_M"/>
+        <meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version" />
     </application>
 
 </manifest>
