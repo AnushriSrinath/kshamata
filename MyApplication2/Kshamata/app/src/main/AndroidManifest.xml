@@ -34,6 +34,10 @@
         <activity
             android:name=".add_woman"
             android:label="@string/title_activity_add_woman"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".display_details"
+            android:label="@string/title_activity_display_details"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

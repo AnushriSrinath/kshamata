@@ -1,6 +1,5 @@
 package com.example.anu.kshamata;
 
-import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -8,18 +7,21 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
-public class add_woman extends AppCompatActivity {
+public class display_details extends AppCompatActivity {
+View view;
 
+    TextView name,email;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_woman2);
+        setContentView(R.layout.activity_display_details);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+        name = (TextView)findViewById(R.id.name);
+        email = (TextView)findViewById(R.id.email);
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -28,42 +30,31 @@ public class add_woman extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
+        displayContact(view);
     }
 
-
-
-    public void insertContact(View view)
-    {
+    public void displayContact(View view) {
         dbAdapter db = new dbAdapter(this);
-        //---add a contact---
         db.open();
-        EditText txt1, txt2;
-        String str1, str2;
-
-        txt1 = (EditText)findViewById(R.id.editText);
-        txt2 = (EditText)findViewById(R.id.editText2);
-
-        str1 = txt1.getText().toString();
-        str2 = txt2.getText().toString();
-
-        long id = db.insertContact(str1, str2);
-        if(id != 0)
-            Toast.makeText(getApplicationContext(),"Data Inserted Successfully ",Toast.LENGTH_LONG).show();
-        else
-            Toast.makeText(getApplicationContext(),"Data could not be inserted ",Toast.LENGTH_LONG).show();
+        Cursor c = db.getAllContacts();
+        if (c.moveToFirst()) {
+            do {
+                display(c);
+            } while (c.moveToNext());
+        }
         db.close();
-        txt1.setText("");
-        txt2.setText("");
-        txt2.clearFocus();
     }
 
-
-    public void display_details_function(View v)
+    public void display(Cursor c)
     {
-        Intent intent;
-        intent = new Intent(this, display_details.class);
-        startActivity(intent);
 
+        name.setText(c.getString(1));
+        email.setText(c.getString(2));
+        Toast.makeText(this,
+                "id: " + c.getString(0) + "\n" +
+                        "Name: " + c.getString(1) + "\n" +
+                        "Email: " + c.getString(2),
+                Toast.LENGTH_LONG).show();
     }
-
 }
