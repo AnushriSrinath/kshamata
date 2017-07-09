@@ -1,37 +1,43 @@
 package com.example.anu.kshamata;
 
 import android.content.Intent;
-import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 
-public class assigned_women extends AppCompatActivity {
+public class assigned_women extends AppCompatActivity implements View.OnClickListener {
+
+
+    Button PersonalInfo, Placements, Independent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_assigned_women);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+        PersonalInfo = (Button) findViewById(R.id.btnSubmit3);
+        Placements = (Button) findViewById(R.id.btnSubmit2);
+        Independent = (Button) findViewById(R.id.btnSubmit4);
+
+        PersonalInfo.setOnClickListener(this);
+        Placements.setOnClickListener(this);
+        Independent.setOnClickListener(this);
     }
 
-
-    public void gotoprofile(View v)
-    {
-        Intent intent;
-        intent = new Intent(this, profile.class);
-        startActivity(intent);
+    @Override
+    public void onClick(View view) {
+        if(view == Placements ){
+            finish();
+            startActivity(new Intent(this, Skills.class));
+        }
+        if(view == Independent ){
+            finish();
+            startActivity(new Intent(this,Independent.class));
+        }
+        if(view == PersonalInfo ){
+            finish();
+            startActivity(new Intent(this, Placement.class));
+        }
     }
 }

@@ -1,5 +1,14 @@
 <resources>
+
+    <string name="country_prompt">Skill</string>
     <string name="app_name">Kshamata</string>
+
+
+    <string-array name="country_arrays">
+        <item>Tailoring.</item>
+        <item>Data Entry.</item>
+        <item>Embroidory.</item>
+    </string-array>
 
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
@@ -104,4 +113,17 @@
     <string name="title_activity_display_details">display_details</string>
     <string name="title_activity_send__json">Send_JSON</string>
     <string name="title_activity_admin_activity">admin_activity</string>
+    <string name="hint_names20">Stay Area.</string>
+    <string name="hint_emails21">Duration.</string>
+    <string name="hint_emails22">Is it Shared?</string>
+    <string name="hint_emails23">Expenses.</string>
+    <string name="hint_emails24">Monthly  saving.</string>
+    <string name="hint_passwords25">Relationship with Housemtes.</string>
+    <string name="btn_sign_ups">Other Comments.</string>
+    <string name="hint_names">Current Employer.</string>
+    <string name="hint_emails">Joining Salary.</string>
+    <string name="hint_emails1">Current Salary.</string>
+    <string name="hint_emails2">Job Responsibilty.</string>
+    <string name="hint_emails3">Satisfaction level.</string>
+    <string name="hint_passwords">Future Plans.</string>
 </resources>

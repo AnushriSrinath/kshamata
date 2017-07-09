@@ -37,10 +37,6 @@
             android:name=".volunteer"
             android:label="@string/title_activity_admin"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".assigned_women"
-            android:label="@string/title_activity_assigned_women"
-            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".profile" />
         <activity android:name=".update_info" />
         <activity android:name=".story" />
@@ -66,15 +62,18 @@
             android:name=".Send_JSON"
             android:label="@string/title_activity_send__json"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".List_of_Women"></activity>
+        <activity android:name=".List_of_Women" />
         <activity android:name=".List_of_Volunteers" />
         <activity
             android:name=".admin_activity"
             android:label="@string/title_activity_admin_activity"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".Map_Of_Women" />
-        <activity android:name=".login"></activity>
+        <activity android:name=".login" />
+        <activity android:name=".assigned_women" />
+        <activity android:name=".Skills" />
+        <activity android:name=".Independent" />
+        <activity android:name=".Placement"></activity>
     </application>
 
 </manifest>
