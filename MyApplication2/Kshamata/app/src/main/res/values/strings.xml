@@ -102,4 +102,5 @@
     </string>
     <string name="title_activity_add_woman">add_woman</string>
     <string name="title_activity_display_details">display_details</string>
+    <string name="title_activity_send__json">Send_JSON</string>
 </resources>
