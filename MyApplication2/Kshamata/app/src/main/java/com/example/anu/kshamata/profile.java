@@ -30,7 +30,7 @@ public class profile extends AppCompatActivity {
     public void history(View v)
     {
         Intent intent;
-        intent = new Intent(this, history.class);
+        intent = new Intent(this, story.class);
         startActivity(intent);
 
     }

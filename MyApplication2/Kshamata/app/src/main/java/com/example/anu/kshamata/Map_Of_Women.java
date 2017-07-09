@@ -38,8 +38,7 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import java.util.Random;
 
-
-public class track_woman extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks,
+public class Map_Of_Women extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener {
 
     GoogleMap mMap;
@@ -51,12 +50,13 @@ public class track_woman extends AppCompatActivity implements GoogleApiClient.Co
     LocationManager locationManager;
     Double[] lattarray = {12.9577,12.9787,13.6591,13.7700,13.3230,14.3991,13.9224,12.7231,12.18522,13.199};
     Double[] longarray = {77.6764,77.5285,78.0032,76.6257,77.6457,78.3452,77.1449,77.1415,78.37044,76.5932};
-    Random rand;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (servicesOK()) {
-            setContentView(R.layout.activity_track_woman);
+            setContentView(R.layout.activity_map__of__women);
             if (initMap()) {
                 locationClient = new GoogleApiClient.Builder(this).addApi(LocationServices.API)
                         .addConnectionCallbacks(this).addOnConnectionFailedListener(this).build();
@@ -65,23 +65,21 @@ public class track_woman extends AppCompatActivity implements GoogleApiClient.Co
                 Toast.makeText(getApplicationContext(), "Map not connected", Toast.LENGTH_SHORT).show();
             }
         } else {
-            setContentView(R.layout.activity_track_woman);
+            setContentView(R.layout.activity_map__of__women);
 
         }
-        rand = new Random();
-        int i = rand.nextInt(9) + 0;
         Location location = new Location("");
-        location.setLatitude(lattarray[i]);
-        location.setLongitude(longarray[i]);
-        LatLng myLocation = new LatLng(location.getLatitude(),location.getLongitude());
-        CameraUpdate update = CameraUpdateFactory.newLatLngZoom(myLocation, 15);
-        mMap.animateCamera(update);
-        from_marker = new MarkerOptions().position(myLocation).icon(
-                BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)).alpha((float) 0.9);
-        from_marker_ref = mMap.addMarker(from_marker);
-
+        for(int i=0;i<10;i++){
+            location.setLatitude(lattarray[i]);
+            location.setLongitude(longarray[i]);
+            LatLng myLocation = new LatLng(location.getLatitude(),location.getLongitude());
+            CameraUpdate update = CameraUpdateFactory.newLatLngZoom(myLocation, 15);
+            mMap.animateCamera(update);
+            from_marker = new MarkerOptions().position(myLocation).icon(
+                    BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)).alpha((float) 0.9);
+            from_marker_ref = mMap.addMarker(from_marker);
+        }
     }
-
 
     public boolean servicesOK() {
         int isAvailable = GooglePlayServicesUtil.isGooglePlayServicesAvailable(this);
@@ -98,54 +96,10 @@ public class track_woman extends AppCompatActivity implements GoogleApiClient.Co
 
     public boolean initMap() {
         if (mMap == null) {
-            SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
+            SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.mapofw);
             mMap = mapFragment.getMap();
         }
         return (mMap != null);
-    }
-
-    public void cur_loc_give(View view) {
-        Log.d("log1", "Entered method");
-        /*Location location = new Location("");
-        location.setLatitude(12.9716);
-        location.setLongitude(77.5946);
-        LatLng myLocation = new LatLng(location.getLatitude(),location.getLongitude());
-        CameraUpdate update = CameraUpdateFactory.newLatLngZoom(myLocation, 15);
-        mMap.animateCamera(update);
-        from_marker = new MarkerOptions().position(myLocation).icon(
-                BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE)).alpha((float) 0.1);
-        from_marker_ref = mMap.addMarker(from_marker);
-        mMap.setMyLocationEnabled(true);*/
-        locListener = new LocationListener() {
-            @Override
-            public void onLocationChanged(Location location) {
-                Log.d("log1", "Entered method location change");
-                LatLng myLocation = new LatLng(location.getLatitude(),location.getLongitude());
-                CameraUpdate update = CameraUpdateFactory.newLatLngZoom(myLocation, 15);
-                mMap.animateCamera(update);
-                from_marker = new MarkerOptions().position(myLocation).icon(
-                        BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
-                from_marker_ref = mMap.addMarker(from_marker);
-            }
-
-        };
-        /*if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            Toast.makeText(getApplicationContext(),"Toost",Toast.LENGTH_SHORT).show();
-            // TODO: Consider calling
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                requestPermissions(new String[]{Manifest.permission.ACCESS_COARSE_LOCATION,Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.INTERNET}
-                        ,10);
-            }
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
-            return;
-        }else {
-            locationManager.requestLocationUpdates("gps", 5000, 0, (android.location.LocationListener) locListener);
-        }*/
     }
 
     @Override

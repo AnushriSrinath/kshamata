@@ -4,13 +4,18 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_add_woman"
-
-            android:title="Add Woman" />
+            android:title="Add Women" />
         <item
-            android:id="@+id/nav_create_report"
-
-            android:title="Assigned Women" />
-
+            android:id="@+id/schedule"
+            android:title="Schedule" />
+        <item
+            android:id="@+id/mapofwoman"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="MapOfWomen" />
+        <item
+            android:id="@+id/nav_manage"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Tools" />
     </group>
 
     <item android:title="Communicate">

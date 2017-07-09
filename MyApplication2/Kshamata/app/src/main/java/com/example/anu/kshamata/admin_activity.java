@@ -14,13 +14,13 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class volunteer extends AppCompatActivity
+public class admin_activity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_admin2);
+        setContentView(R.layout.activity_admin_activity);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -56,7 +56,7 @@ public class volunteer extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.admin, menu);
+        getMenuInflater().inflate(R.menu.admin_activity, menu);
         return true;
     }
 
@@ -81,15 +81,14 @@ public class volunteer extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_add_woman) {
-            Intent intent;
-            intent = new Intent(this, add_woman.class);
-            startActivity(intent);
-
-            // Handle the camera action
-        } else if (id == R.id.nav_create_report) {
-            Intent intent;
-            intent = new Intent(this, assigned_women.class);
+        if (id == R.id.mapofwoman) {
+            Intent i = new Intent(admin_activity.this,Map_Of_Women.class);
+            startActivity(i);
+        } else if (id == R.id.nav_add_woman) {
+            Intent inte = new Intent(admin_activity.this,add_woman.class);
+            startActivity(inte);
+        } else if (id == R.id.schedule) {
+            Intent intent = new Intent(admin_activity.this, List_of_Women.class);
             startActivity(intent);
         }
 

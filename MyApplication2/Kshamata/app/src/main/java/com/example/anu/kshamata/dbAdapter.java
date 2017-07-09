@@ -89,6 +89,22 @@ public class dbAdapter {
     //---retrieves all the contacts---
     public Cursor getAllContacts()
     {
+
+//        SQLiteDatabase SQ = this.db;
+//
+//        String query = "SELECT * FROM " + DATABASE_TABLE + " WHERE 1" ;
+//
+//        //String query2 = "SELECT * FROM " + TABLE_NAME + "WHERE " + COLUMN_BG + " = 'B+'";
+//
+//
+//
+//        //Using cursors
+//
+//        Cursor CR = SQ.rawQuery(query, null);
+//        return CR;
+
+
+
         return db.query(DATABASE_TABLE, new String[] {KEY_ROWID, KEY_NAME, KEY_DOB, KEY_AGE,
                 KEY_PHONE}, null, null, null, null, null);
     }

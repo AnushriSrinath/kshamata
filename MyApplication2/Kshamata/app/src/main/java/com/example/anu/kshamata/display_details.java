@@ -6,7 +6,6 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -14,7 +13,7 @@ import android.widget.Toast;
 public class display_details extends AppCompatActivity {
 View view;
 
-    TextView name,dob, age, phone;
+    TextView name,dob, age, phone,history;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,6 +24,8 @@ View view;
         dob = (TextView)findViewById(R.id.dob);
         age = (TextView)findViewById(R.id.age);
         phone = (TextView)findViewById(R.id.phone);
+        history = (TextView)findViewById(R.id.historytext);
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,10 +53,14 @@ View view;
     public void display(Cursor c)
     {
 
-        name.setText("NAME: " + c.getString(1));
-        dob.setText("DOB: " + c.getString(2));
-        age.setText("AGE: " + c.getString(3));
-        phone.setText("PHONE: " + c.getString(4));
-
+        name.setText(c.getString(1));
+        dob.setText(c.getString(2));
+        String s = c.getString(0) + c.getString(1) + c.getString(2);
+        Toast.makeText(this,s,Toast.LENGTH_SHORT).show();
+        Toast.makeText(this,
+                "id: " + c.getString(0) + "\n" +
+                        "Name: " + c.getString(1) + "\n" +
+                        "dob: " + c.getString(2),
+                Toast.LENGTH_LONG).show();
     }
 }

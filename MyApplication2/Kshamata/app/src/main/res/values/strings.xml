@@ -1,5 +1,29 @@
 <resources>
+
+    <string name="country_prompt">Skill</string>
     <string name="app_name">Kshamata</string>
+
+<<<<<<< HEAD
+    <string name="subscription_key">39818244f5f240d29a2aafd23b2c14b0</string>
+    <string name="add_subscription_key_tip_title">Subscription Key is Needed</string>
+    <string name="add_subscription_key_tip">Please put your subscription key to source file \"app/res/values/strings.xml\" to enable Vision API calls.</string>
+
+
+    <string name="hello_world">Hello world!</string>
+    <string name="speech_prompt">Say something&#8230;</string>
+    <string name="speech_not_supported">Sorry! Your device doesn\'t support speech input</string>
+    <string name="tap_on_mic">Tap on mic to speak</string>
+
+
+
+=======
+
+    <string-array name="country_arrays">
+        <item>Tailoring.</item>
+        <item>Data Entry.</item>
+        <item>Embroidory.</item>
+    </string-array>
+>>>>>>> 81beaa1446c15b82c85781be92e03461e06e365b
 
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
@@ -102,4 +126,19 @@
     </string>
     <string name="title_activity_add_woman">add_woman</string>
     <string name="title_activity_display_details">display_details</string>
+    <string name="title_activity_send__json">Send_JSON</string>
+    <string name="title_activity_admin_activity">admin_activity</string>
+    <string name="hint_names20">Stay Area.</string>
+    <string name="hint_emails21">Duration.</string>
+    <string name="hint_emails22">Is it Shared?</string>
+    <string name="hint_emails23">Expenses.</string>
+    <string name="hint_emails24">Monthly  saving.</string>
+    <string name="hint_passwords25">Relationship with Housemtes.</string>
+    <string name="btn_sign_ups">Other Comments.</string>
+    <string name="hint_names">Current Employer.</string>
+    <string name="hint_emails">Joining Salary.</string>
+    <string name="hint_emails1">Current Salary.</string>
+    <string name="hint_emails2">Job Responsibilty.</string>
+    <string name="hint_emails3">Satisfaction level.</string>
+    <string name="hint_passwords">Future Plans.</string>
 </resources>
