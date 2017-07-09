@@ -27,4 +27,11 @@ public class List_of_Volunteers extends AppCompatActivity {
             }
         });
     }
+
+    @Override
+    public void onBackPressed() {
+        Intent inti = new Intent(List_of_Volunteers.this, admin_activity.class);
+        startActivity(inti);
+        finish();
+    }
 }

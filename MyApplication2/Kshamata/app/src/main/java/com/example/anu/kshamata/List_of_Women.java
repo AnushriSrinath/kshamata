@@ -30,4 +30,11 @@ public class List_of_Women extends AppCompatActivity {
             }
         });
     }
+
+    @Override
+    public void onBackPressed() {
+        Intent inti = new Intent(List_of_Women.this, admin_activity.class);
+        startActivity(inti);
+        finish();
+    }
 }
