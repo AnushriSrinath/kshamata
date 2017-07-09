@@ -66,20 +66,15 @@
             android:name=".Send_JSON"
             android:label="@string/title_activity_send__json"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".List_of_Women">
-        </activity>
+        <activity android:name=".List_of_Women"></activity>
         <activity android:name=".List_of_Volunteers" />
         <activity
             android:name=".admin_activity"
             android:label="@string/title_activity_admin_activity"
-            android:theme="@style/AppTheme.NoActionBar" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            android:theme="@style/AppTheme.NoActionBar">
         </activity>
-        <activity android:name=".Map_Of_Women"></activity>
+        <activity android:name=".Map_Of_Women" />
+        <activity android:name=".login"></activity>
     </application>
 
 </manifest>
